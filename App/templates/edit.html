@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find the Actor/Actress</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edit_style.css') }}">
+</head>
+<body>
+<div style="width: 50%;">
+    <div style="width: 50%; height: 400px; float: left;">
+        <center>Crop {{filename}} to improve the result!</center>
+        <img src="{{ url_for('display_image', filename=filename) }}">
+    </div>
+    <div style="margin-left: 50%; height: 400px;">
+        <center>Cropped version of {{filename}}.</center>
+        <img src="{{ url_for('display_image', filename=filename) }}">
+        <center>
+            <form action = "upload" method="POST" enctype=multipart/form-data>
+                <input type="submit">
+            </form>
+        </center>
+    </div>
+</div>
+</body>
+</html>

@@ -14,14 +14,3 @@ So, here comes idea of the project :
  5. It gets the full cast & crew people names from all these possible programs(ex. https://www.imdb.com/title/tt0172014/fullcredits?ref_=ttrel_ql_1  )	
  6. For each names, get the first 10 pictures from google image search and compare to the one provided
  7. And send back the one name with the best % of accuracy, and its corresponding last event (ex. http://www.allocine.fr/personne/fichepersonne_gen_cpersonne=575311.html  “OF COURSE, I saw him in H24 with Anne Parillaud!”)
- 
- 
- To get started:
-1. Set up git, pull from github
-2. Create virtual environment --> conda create --name pythonlabs python=3.6
-3. Enter your new environment --> conda activate pythonlabs
-4. Import requirements --> pip install -r env.txt
-5. Set Flask App environment variable --> set FLASK_APP=FindTheActor.py (For mac, use "export" instead of "set")
-6. Set Flask to debug mode--> set FLASK_ENV=development
-7. Run the Flask app --> python FindTheActor.py
-8. Open browser and connect to localhost:5000

@@ -8,17 +8,15 @@
 <body>
 <div style="width: 50%;">
     <div style="width: 50%; height: 400px; float: left;">
-        <center>Crop {{filename}} to improve the result!</center>
+        <center>Identify the actor/actress</center>
         <img src="{{ url_for('display_image', filename=filename) }}">
     </div>
-    <div style="margin-left: 50%; height: 400px;">
-        <center>Cropped version of {{filename}}.</center>
-        <img src="{{ url_for('display_image', filename=filename) }}">
-        <center>
-            <form action = "upload" method="POST" enctype=multipart/form-data>
-                <input type="submit">
-            </form>
-        </center>
+    <div>
+        <ul>
+            <li>Would be dynamic list depending on yolo output : </li>
+            <li><a href="{{url_for('result')}}"> Person 1</a></li>
+            <li> <a href="{{url_for('result')}}"> Person 2</a> </li>
+        </ul>
     </div>
 </div>
 </body>

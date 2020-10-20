@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
+
+
 UPLOAD_FOLDER = 'static/images'
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
 
@@ -12,13 +14,13 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
     return render_template('index.html')
 
-@app.route('/edit/<filename>')
+@app.route('/detect/<filename>')
 def display_image(filename):
     return redirect(url_for('static', filename='images/' + filename))
 
 
-@app.route('/edit', methods=['POST'])
-def edit():
+@app.route('/detect', methods=['POST'])
+def detect():
     if 'image' not in request.files:
         return redirect(url_for('index'))
     file = request.files['image']

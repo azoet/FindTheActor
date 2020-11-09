@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
+from Detection import Detection
+import cv2
+import numpy as np
 
 
 UPLOAD_FOLDER = 'static/images'
@@ -10,16 +13,23 @@ app = Flask(__name__)
 app.secret_key = 'gi2tn2k6plnr9th5nad52jgofmp6'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Load models
+detectionModel = Detection()
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/detect/<filename>')
+@app.route('/image/<filename>')
 def display_image(filename):
     return redirect(url_for('static', filename='images/' + filename))
 
 
-@app.route('/detect', methods=['POST'])
+@app.route('/detect/<filename>')
+def display_detect(filename):
+    return render_template('detect.html', filename=filename)
+
+@app.route('/upload', methods=['POST'])
 def detect():
     if 'image' not in request.files:
         return redirect(url_for('index'))
@@ -27,15 +37,15 @@ def detect():
     if file.filename == '':
         return redirect(url_for('index'))
     if file and allowed_file(file.filename):
+        npimg = np.fromfile(file, np.uint8)
+        img = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+        boxed = detectionModel.box_faces(img)
+
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return render_template('edit.html', filename=filename)
+        cv2.imwrite(os.path.join(app.config['UPLOAD_FOLDER'], filename), boxed)
+        return redirect(url_for('display_detect', filename=filename))
     return
 
-
-@app.route('/upload', methods=['POST'])
-def upload():
-    return redirect(url_for('result'))
 
 @app.route('/result')
 def result():
@@ -48,4 +58,4 @@ def allowed_file(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0')

@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  storage-service:
+    image: "storage-service:latest"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
+      - REPOSITORY_S3_BASE_PATH=
+      - REPOSITORY_S3_ACCESS_KEY_ID=
+      - REPOSITORY_S3_SECRET_ACCESS_KEY=
+  images-service:
+    image: "images-service:latest"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
+      - REPOSITORY_BING_API_KEY=
+      - REPOSITORY_BING_CUSTOM_CONFIG_ID=
+      - REPOSITORY_BING_MAX_RESULTS=5
+  imdb-service:
+    image: "imdb-service:latest"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
+  find-the-actor-service:
+    image: "find-the-actor-service:latest"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
+      - REPOSITORY_IMDB_HOST=http://imdb-service
+      - REPOSITORY_IMAGES_HOST=http://images-service
+      - REPOSITORY_STORAGE_HOST=http://storage-service
+    ports:
+      - "8080:80"
+    expose:
+      - "8080"
+    depends_on:
+      - storage-service
+      - images-service
+      - imdb-service

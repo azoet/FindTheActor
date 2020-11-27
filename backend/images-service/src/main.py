@@ -13,7 +13,9 @@ PORT = os.environ.get('PORT') if os.environ.get('PORT') else 8081
 conf = {
     'repository': {},
     'recognition': {
-        'model_path': os.environ.get('MODEL_PATH')
+        'model_path': os.environ.get('RECOGNITION_MODEL_PATH'),
+        'image_size_width': os.environ.get('RECOGNITION_IMAGE_WIDTH'),
+        'image_size_height': os.environ.get('RECOGNITION_IMAGE_HEIGHT'),
     }
 }
 

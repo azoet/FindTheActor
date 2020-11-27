@@ -13,6 +13,7 @@ RUN pip install numpy
 RUN pip install opencv-python
 RUN pip install mtcnn
 RUN pip install tensorflow
+RUN pip install Keras
 
 EXPOSE 80
 ENV FLASK_APP=main.py

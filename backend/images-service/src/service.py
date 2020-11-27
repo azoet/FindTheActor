@@ -3,6 +3,7 @@ import re
 import numpy as np
 import cv2
 from mtcnn.mtcnn import MTCNN
+from tensorflow import keras
 from repository import ImageRepository
 
 
@@ -35,11 +36,18 @@ class Detection:
                 return scale / 10
         return 1
 
+class Recognition:
+    def __init__(self, config):
+        self.model = keras.models.load_model(config['model_path'])
+
+    def predict(self, cropped_image):
+        return self.model.predict(cropped_image)
 
 class ImageService():
     def __init__(self, config):
         self.repository = ImageRepository(config['repository'])
-        self.facerec_model = Detection()
+        self.face_detection_model = Detection()
+        self.face_recognition_model = Recognition(config['recognition'])
 
     def search(self, term):
         return self.repository.search(term)
@@ -47,7 +55,7 @@ class ImageService():
     def face_detection(self, file_name, binary_content):
         nparr = np.fromstring(binary_content, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        drawing, boxes = self.facerec_model.box_faces(img)
+        drawing, boxes = self.face_detection_model.box_faces(img)
         ext = file_name.rsplit('.', 1)[1]
         success, encoded_image = cv2.imencode('.%s' % ext, drawing)
         if success:
@@ -55,7 +63,12 @@ class ImageService():
         return None
 
     def face_recognition(self, binary_content):
-        return ['Person A', 'Person B', 'Person C']
+        nparr = np.fromstring(binary_content, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        resized_img = cv2.resize(img, (224, 224))
+        expanded_resized_img = np.expand_dims(resized_img, axis=0)
+        pred = self.face_recognition_model.predict(expanded_resized_img)
+        return np.argsort(-pred)[3:].tolist()
 
     def crop_image(self, binary_content, box, ext="jpg"):
         nparr = np.fromstring(binary_content, np.uint8)

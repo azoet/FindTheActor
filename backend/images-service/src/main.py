@@ -11,7 +11,10 @@ HOST = os.environ.get('HOST') if os.environ.get('HOST') else "0.0.0.0"
 PORT = os.environ.get('PORT') if os.environ.get('PORT') else 8081
 
 conf = {
-    'repository': {}
+    'repository': {},
+    'recognition': {
+        'model_path': os.environ.get('MODEL_PATH')
+    }
 }
 
 if os.environ.get('REPOSITORY_BING_API_KEY'):

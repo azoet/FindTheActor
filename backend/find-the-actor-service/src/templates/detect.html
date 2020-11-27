@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find the Actor/Actress.</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/detect_style.css') }}">
+</head>
+<body>
+<div style="width: 50%;">
+    <div style="width: 50%; height: 400px; float: left;">
+        <center>Identify the actor/actress</center>
+        <img src="{{ url_for('display_image', filename='Boxed_'+filename) }}">
+    </div>
+    <div>
+        <center>Please select the box that best fits the actor/acress.</center>
+        <ul>
+        {% for box in boxes %}
+        <li> <a href="{{url_for('result', filename=filename, boxnumber = loop.index)}}"> Box {{loop.index}} </a> </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,3 +1,5 @@
 class InformalImageStorageInterface:
-    def store_image(self, path, binary_content, content_type):
+    def store_file(self, path, binary_content, on_conflict):
+        pass
+    def get_file(self, path):
         pass

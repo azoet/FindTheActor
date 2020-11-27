@@ -16,12 +16,16 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Load models
 detectionModel = Detection()
+
+
 def recognitionModel(inputImage):
     return ["Person A", "Person B", "Person C"]
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/image/<filename>')
 def display_image(filename):
@@ -50,7 +54,8 @@ def upload():
         filename = secure_filename(file.filename)
         filename_boxed = "Boxed_"+filename
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        filepath_boxed = os.path.join(app.config['UPLOAD_FOLDER'], filename_boxed)
+        filepath_boxed = os.path.join(
+            app.config['UPLOAD_FOLDER'], filename_boxed)
         with open(filepath + '.pickle', 'wb') as handle:
             pickle.dump(boxes, handle, protocol=pickle.HIGHEST_PROTOCOL)
         cv2.imwrite(filepath, img)
@@ -63,7 +68,8 @@ def upload():
 def result(filename, boxnumber):
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     filename_cropped = "Box"+boxnumber+filename
-    filepath_cropped = os.path.join(app.config['UPLOAD_FOLDER'], filename_cropped)
+    filepath_cropped = os.path.join(
+        app.config['UPLOAD_FOLDER'], filename_cropped)
     with open(filepath + '.pickle', 'rb') as handle:
         boxes = pickle.load(handle)
     x, y, width, height = boxes[int(boxnumber)-1]

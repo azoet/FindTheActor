@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 requests = "*"
 flask = "*"
+numpy = "*"
+opencv-python = "*"
+mtcnn = "*"
+tensorflow = "*"
 
 [dev-packages]
 pylint = "*"

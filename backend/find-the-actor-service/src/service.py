@@ -1,3 +1,5 @@
+import base64
+import json
 from repository.imdb import IMDbRepository, IMDbRepositoryException
 from repository.images import ImagesRepository, ImagesRepositoryException
 from repository.storage import StorageRepository, StorageRepositoryException
@@ -46,5 +48,49 @@ class FindTheActorService():
                 self.download_store_actor_image(c['name'], i)
 
         return {
-            'cast': cast,
+            'Status OK'
         }
+
+    def run_image_facerec(self, file_name, file_content):
+        (boxed_image, boxes) = self.imagesRepository.face_recognition(
+            file_name, file_content)
+        # Store main image
+        self.storageRepository.store('transient', file_name, file_content)
+        # Store boxed image
+        self.storageRepository.store(
+            'transient', 'Boxed_%s' % file_name, boxed_image)
+        # Store boxes coordinates
+        file_wo_ext = file_name.rsplit('.')
+        self.storageRepository.store_json(
+            'transient', 'Boxes_%s.json' % file_wo_ext[0], boxes_to_dict(boxes)
+        )
+
+        return {'yes'}
+
+    def get_file(self, file_name):
+        return self.storageRepository.get_file("transient/%s" % file_name)
+
+    def get_cropped_image(self, file_name, box_number):
+        file_name_wo_ext = file_name.rsplit('.')[0]
+        boxes_payload = self.get_file("Boxes_%s.json" % file_name_wo_ext)
+        boxes = json.loads(base64.b64decode(
+            boxes_payload['encoded_binary_content']))
+        image = self.storageRepository.get_file("transient/%s" % file_name)
+        return self.imagesRepository.crop_image(image['encoded_binary_content'], boxes[box_number-1])
+
+    def store_image(self, file_name, encoded_binary_content, encode=False):
+        self.storageRepository.store(
+            'transient', file_name, encoded_binary_content, encode)
+
+
+def boxes_to_dict(boxes):
+    return [box_to_dict(box) for box in boxes]
+
+
+def box_to_dict(box):
+    return {
+        'x': box[0],
+        'y': box[1],
+        'width': box[2],
+        'height': box[3]
+    }

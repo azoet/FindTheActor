@@ -30,15 +30,23 @@ def search_images() -> str:
     return jsonify(service.search(q))
 
 
-@app.route("/images/facerec", methods=['POST'])
-def face_recognition() -> str:
+@app.route("/images/face/detection", methods=['POST'])
+def face_detection() -> str:
     decoded_content = base64.b64decode(request.json['file_content'])
-    (boxed_image, boxes) = service.face_recognition(
+    (boxed_image, boxes) = service.face_detection(
         request.json['file_name'], decoded_content)
     b64_bytes = base64.b64encode(boxed_image)
     return jsonify({
         'boxed_image': b64_bytes.decode(ENCODING),
         'boxes': boxes,
+    })
+
+
+@app.route("/images/face/recognition", methods=['POST'])
+def face_recognition() -> str:
+    decoded_content = base64.b64decode(request.json['binary_encoded_content'])
+    return jsonify({
+        'result': service.face_recognition(decoded_content)
     })
 
 

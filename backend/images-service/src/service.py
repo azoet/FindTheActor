@@ -44,16 +44,18 @@ class ImageService():
     def search(self, term):
         return self.repository.search(term)
 
-    def face_recognition(self, file_name, binary_content):
+    def face_detection(self, file_name, binary_content):
         nparr = np.fromstring(binary_content, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         drawing, boxes = self.facerec_model.box_faces(img)
-
         ext = file_name.rsplit('.', 1)[1]
         success, encoded_image = cv2.imencode('.%s' % ext, drawing)
         if success:
             return (encoded_image, boxes)
         return None
+
+    def face_recognition(self, binary_content):
+        return ['Person A', 'Person B', 'Person C']
 
     def crop_image(self, binary_content, box, ext="jpg"):
         nparr = np.fromstring(binary_content, np.uint8)

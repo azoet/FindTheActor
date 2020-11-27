@@ -4,7 +4,8 @@ import base64
 
 
 IMAGES_SERVICE_SEARCH_URL = "images/search"
-IMAGES_SERVICE_FACEREC_URL = "images/facerec"
+IMAGES_SERVICE_FACE_DETECTION_URL = "images/face/detection"
+IMAGES_SERVICE_FACE_RECOGNITION_URL = "images/face/recognition"
 IMAGES_SERVICE_CROP_URL = "images/crop"
 
 ENCODING = 'utf-8'
@@ -28,15 +29,15 @@ class ImagesRepository():
             return r.json()
         raise ImagesRepositoryException
 
-    def face_recognition(self, file_name, file_content):
-        api_url = "%s/%s" % (self.host, IMAGES_SERVICE_FACEREC_URL)
+    def face_detection(self, file_name, file_content):
+        api_url = "%s/%s" % (self.host, IMAGES_SERVICE_FACE_DETECTION_URL)
 
-        b64_bytes = base64.b64encode(file_content)
-        b64_string = b64_bytes.decode(ENCODING)
+        b64_non_utf8_string = base64.b64encode(file_content)
+        b64_utf8_string = b64_non_utf8_string.decode(ENCODING)
 
         r = requests.post(api_url, json={
             'file_name': file_name,
-            'file_content': b64_string,
+            'file_content': b64_utf8_string,
         })
         if r.status_code == 200:
             content = r.json()
@@ -52,4 +53,15 @@ class ImagesRepository():
         })
         if r.status_code == 200:
             return r.json()
+        raise ImagesRepositoryException
+
+    def face_recognition(self, binary_encoded_content):
+        api_url = "%s/%s" % (self.host, IMAGES_SERVICE_FACE_RECOGNITION_URL)
+
+        r = requests.post(api_url, json={
+            'binary_encoded_content': binary_encoded_content,
+        })
+        if r.status_code == 200:
+            content = r.json()
+            return content['result']
         raise ImagesRepositoryException

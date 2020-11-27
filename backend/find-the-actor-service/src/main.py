@@ -27,12 +27,6 @@ conf = {
     }
 }
 
-# Amir's mock function. Return actor's name
-
-
-def recognitionModel(inputImage):
-    return ["Person A", "Person B", "Person C"]
-
 
 if os.environ.get('REPOSITORY_IMDB_HOST'):
     conf['repository']['imdb']['host'] = os.environ.get('REPOSITORY_IMDB_HOST')
@@ -83,6 +77,7 @@ def upload():
     if file.filename == '':
         return redirect(url_for('index'))
     if file and allowed_file(file.filename):
+        # SHould be face detection, not rec
         service.run_image_facerec(file.filename, file.read())
         return redirect(url_for('display_detect', filename=file.filename))
     return
@@ -116,7 +111,9 @@ def result(filename, boxnumber):
     file_name_cropped = 'BOX_%i_%s' % (boxnumber, filename)
     service.store_image(file_name_cropped,
                         cropped_image['binary_encoded_content'])
-    data = recognitionModel(cropped_image['binary_encoded_content'])
+    # To update
+    data = service.trigger_face_recognition(
+        cropped_image['binary_encoded_content'])
     return render_template('result.html', data=data, filename=file_name_cropped)
 
 

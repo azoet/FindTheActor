@@ -40,7 +40,7 @@ class StorageService():
         return (file_name, content)
 
 
-def download_image(file_url, timeout=10):
+def download_image(file_url, timeout=1):
     r = requests.get(file_url, timeout=timeout)
     img_reg = re.compile(r"([\w-]+\.(jpe?g|png|gif|bmp))")
     if r.headers.get('content-disposition') is not None:
@@ -51,6 +51,7 @@ def download_image(file_url, timeout=10):
     We might want to use a hash of the file as name
     to avoid storing multiple times the same image
     '''
-    if len(file_name) > 0:
+    # Avoids case where find_all sends back a string rather than a list for some reasons
+    if isinstance(file_name, list) and len(file_name) > 0:
         return (file_name[0][0], r.content, r.headers.get('content-type'))
     raise DownloadError

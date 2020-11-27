@@ -52,9 +52,10 @@ class FindTheActorService():
         }
 
     def run_image_facerec(self, file_name, file_content):
-        (boxed_image, boxes) = self.imagesRepository.face_recognition(
+        # SHould be called face detection
+        (boxed_image, boxes) = self.imagesRepository.face_detection(
             file_name, file_content)
-        # Store main image
+        # Store main image - Might be useless, never used again
         self.storageRepository.store('transient', file_name, file_content)
         # Store boxed image
         self.storageRepository.store(
@@ -81,6 +82,9 @@ class FindTheActorService():
     def store_image(self, file_name, encoded_binary_content, encode=False):
         self.storageRepository.store(
             'transient', file_name, encoded_binary_content, encode)
+
+    def trigger_face_recognition(self, encoded_binary_content):
+        return self.imagesRepository.face_recognition(encoded_binary_content)
 
 
 def boxes_to_dict(boxes):

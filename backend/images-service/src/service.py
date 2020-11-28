@@ -36,11 +36,12 @@ class Detection:
                 return scale / 10
         return 1
 
+
 class Recognition:
     def __init__(self, config):
         self.model = keras.models.load_model(config['model_path'])
-        self.image_width = config['image_size_width']
-        self.image_height = config['image_size_height']
+        self.image_width = int(config['image_size_width'])
+        self.image_height = int(config['image_size_height'])
 
     def predict(self, cropped_image):
         nparr = np.fromstring(cropped_image, np.uint8)
@@ -48,6 +49,7 @@ class Recognition:
         resized_img = cv2.resize(img, (self.image_width, self.image_height))
         expanded_resized_img = np.expand_dims(resized_img, axis=0)
         return self.model.predict(expanded_resized_img)
+
 
 class ImageService():
     def __init__(self, config):
@@ -69,7 +71,7 @@ class ImageService():
         return None
 
     def face_recognition(self, binary_content):
-        pred = self.face_recognition_model.predict(expanded_resized_img)
+        pred = self.face_recognition_model.predict(binary_content)[0]
         return np.argsort(-pred)[3:].tolist()
 
     def crop_image(self, binary_content, box, ext="jpg"):

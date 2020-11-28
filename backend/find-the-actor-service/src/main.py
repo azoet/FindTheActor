@@ -39,6 +39,13 @@ if os.environ.get('REPOSITORY_STORAGE_HOST'):
 
 service = FindTheActorService(conf)
 
+MODEL_MATCHING = ['Alice Englert',
+                  'Cynthia Nixon',
+                  'Finn Wittrock',
+                  'Jon Jon Briones',
+                  'Judy Davis',
+                  'Sarah Paulson']
+
 # Checking file's format
 
 
@@ -114,7 +121,8 @@ def result(filename, boxnumber):
     # To update
     data = service.trigger_face_recognition(
         cropped_image['binary_encoded_content'])
-    return render_template('result.html', data=data, filename=file_name_cropped)
+    converted_data = [MODEL_MATCHING[i] for i in data]
+    return render_template('result.html', data=converted_data, filename=file_name_cropped)
 
 
 if __name__ == '__main__':

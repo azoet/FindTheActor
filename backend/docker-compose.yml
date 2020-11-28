@@ -16,6 +16,9 @@ services:
       - REPOSITORY_BING_API_KEY=
       - REPOSITORY_BING_CUSTOM_CONFIG_ID=
       - REPOSITORY_BING_MAX_RESULTS=5
+      - RECOGNITION_MODEL_PATH=model/vgg16_new_model.h5
+      - RECOGNITION_IMAGE_WIDTH=224
+      - RECOGNITION_IMAGE_HEIGHT=224
   imdb-service:
     image: "imdb-service:latest"
     environment:

@@ -1,13 +1,13 @@
-# Python Labs Project
-   ### Find The Actor
-#### Introduction
+# Python Labs Project :
+   ## Find The Actor
+### Introduction
 Watching a serie or movie on TV, seeing this actor, and forgetting his names. Searching for hours in the deep inside of my thoughts, not finding!
 
 Let’s say I was watching “Joséphine, Ange Gardien”, tonight at 9:35 PM, and who’s this person? (update : he’s Omar Mebrouk)
 
 So, here comes the idea of the project!
 
-#### Main Idea :	
+## Main Idea :	
  1. Open the web app, take a picture of the screen with “the actor”, possibly resize it and send !
  2. Web App is getting the picture with geoloc and timestamp on it to the API server!
  3. The API is taking geoloc, and find the corresponding linear-television scheduled programs
@@ -17,7 +17,7 @@ So, here comes the idea of the project!
  7. And send back the one name with the best % of accuracy, and its corresponding last event (ex. http://www.allocine.fr/personne/fichepersonne_gen_cpersonne=575311.html 
  “OF COURSE, I saw him in H24 with Anne Parillaud!”)
  
-#### General approach of services :
+## General approach of services :
 To build the main idea, and when the client has this doubt about the actor , its device sent a request to our service.
 We choosed to use two different parts including:
  1- Public Network:
@@ -32,23 +32,23 @@ We choosed to use two different parts including:
 A simple diagrams shows how all services mentioned above connect between each other :
  ################### ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/xxxx.JPG)
  
- ##### Face recognition:
+ ## Face recognition:
  
- ##### Feeding the train :
- ##### Model used in python:
+ ## Feeding the train :
+ ## Model used in python:
  
- ##### Output:
+ ## Output:
  To identify :
  When the client upload the image on the web app, he/she has to select which box best fits the face of the actor choosen. 
  Then the app gives an output of the actor/actress' Name with the best accurancy. However, the app tells you two other prediction!
  
  ## Authors :
- ##### DSTI Spring Cohort 2020 – Python Labs 
- ###### Professor : Assan Sanogo
-###### Team members :
+ #### DSTI Spring Cohort 2020 – Python Labs 
+##### Professor : Assan Sanogo
+#### Team members :
 ###### Barbara Martino : *Data scientist Student*
-###### Bala Veeraiah Yarabikki *Data scientist Student*
-###### Amir Zoet *Data scientist Student*
-###### Nawress Mahmoudi *Data Engineer Student*
-###### Helene Huss-Magnin *Data scientist Student*
+###### Bala Veeraiah Yarabikki: *Data scientist Student*
+###### Amir Zoet: *Data scientist Student*
+###### Nawress Mahmoudi: *Data Engineer Student*
+###### Helene Huss-Magnin: *Data scientist Student*
  

@@ -55,7 +55,7 @@ A simple diagrams shows how all services mentioned above connecting between each
  To identify :
  When the client upload the image on the web app, he/she has to select which box best fits the face of the actor choosen. 
  
-<img src="https://github.com/azoet/FindTheActor/blob/master/images/output.JPG" align="center" height="500" width="800"/>
+<img src="https://github.com/azoet/FindTheActor/blob/master/images/output1.JPG" align="center" height="500" width="800"/>
  
  
  Then the app gives an output of the actor/actress' Name with the best accurancy. However, the app tells you two other prediction!

@@ -6,24 +6,14 @@ Watching a serie or movie on TV, seeing this actor, and forgetting his names. Se
 Let’s say I was watching “Joséphine, Ange Gardien”, tonight at 9:35 PM, and who’s this person? (update : he’s Omar Mebrouk)
 
 So, here comes the idea of the project!
-
-## Main Idea :	
- 1. Open the web app, take a picture of the screen with “the actor”, possibly resize it and send !
- 2. Web App is getting the picture with geoloc and timestamp on it to the API server!
- 3. The API is taking geoloc, and find the corresponding linear-television scheduled programs
- 4. It’s taking the timestamp, find all the matching possible programs name broadcast at the same time slot at this precise location (ex. https://www.programme-television.org/series-tv  )
- 5. It gets the full cast & crew people names from all these possible programs(ex. https://www.imdb.com/title/tt0172014/fullcredits?ref_=ttrel_ql_1  )	
- 6. For each names, get the first 10 pictures from google image search and compare to the one provided
- 7. And send back the one name with the best % of accuracy, and its corresponding last event (ex. http://www.allocine.fr/personne/fichepersonne_gen_cpersonne=575311.html 
- “OF COURSE, I saw him in H24 with Anne Parillaud!”)
  
 ## General approach of services :
 The micro services are divided in 4 part : 
-The public one : find the actor is the one that the client Access , it provides all the functions that the client need to access.  
-The 3 others private: 
+1- A/ The public one : find the actor is the one that the client Access , it provides all the functions that the client need to access.  
+2- B/ The 3 others private: 
 - IMDB service : We use the IMDB API to make 2  calls : 
-     -First call : we pass a string of the movie/show name and it returns the movie/show ID. 
-     -Second call: we pass the movie/show ID and it returns the list of all cast members names. 
+         - First call : we pass a string of the movie/show name and it returns the movie/show ID. 
+         - Second call: we pass the movie/show ID and it returns the list of all cast members names. 
 - Image services : we use the bing API to make an images research. 
       We get All images URLs for every cast  member . 
       It contains also the face detection,the face recognition and cropped images. 
@@ -35,10 +25,11 @@ A simple diagrams shows how all services mentioned above connecting between each
  <img src="https://github.com/azoet/FindTheActor/blob/master/images/service.JPG" align="center" height="500" width="800"/>
 
 
-All Microservices are divided in three layers: 
-  -Main : it's the adapter. 
-   -Service : the business logic , contains all the actions. 
-    -Repository:  make the connection between the others services. 
+All Microservices are divided in three layers:  
+
+  - Main : it's the adapter. 
+   - Service : the business logic , contains all the actions. 
+    - Repository:  make the connection between the others services. 
 
 <img src="https://github.com/azoet/FindTheActor/blob/master/images/services.JPG" align="center" height="500" width="800"/>
  

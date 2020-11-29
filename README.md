@@ -19,18 +19,20 @@ So, here comes the idea of the project!
  
 ## General approach of services :
 To build the main idea, and when the client has this doubt about the actor , its device sent a request to our service.
-We choosed to use two different parts including:
+
+We choosed to use two different parts including: 
  1- Public Network:
  This network provides the "FindTheActor" service. It includes how to "Upload" the image, how to "Detect" the information to recognize and shows the "Result" . Then the "Storage" !
  
  2- private Network:
- This one is the main work. It is devided into two service:
-    *Image service* : we used *MTCNN* for the face detection, and *Keras* for the face recognition.
-    *Storage service* : Here, Thanks to the simple cloud storage Amazon S3.
+ This one is the main work. It is devided into two service: 
+ 
+    1- *Image service* : we used *MTCNN* for the face detection, and *Keras* for the face recognition.
+    2- *Storage service* : Here, Thanks to the simple cloud storage Amazon S3.
     
     
 A simple diagrams shows how all services mentioned above connect between each other :
- ################### ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/xxxx.JPG)
+ ################### ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/xxxx.JPG)######
  
  ## Face recognition:
  

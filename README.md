@@ -31,18 +31,34 @@ We choosed to use two different parts including:
     2- *Storage service* : Here, Thanks to the simple cloud storage Amazon S3.
     
     
-A simple diagrams shows how all services mentioned above connect between each other :
- ################### ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/xxxx.JPG)######
+A simple diagrams shows how all services mentioned above connecting between each other :
+ ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/service.JPG)
+ 
+![alt text](https://github.com/azoet/FindTheActor/blob/master/images/services.JPG)
  
  ## Face recognition:
+ ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/recognition.JPG)
  
  ## Feeding the train :
- ## Model used in python:
  
+ ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/feeding_the_train.JPG)
+ ## Model used in python:
+ ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/model.JPG)
+ 
+ 
+ ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/model.JPG)
+  
+  
  ## Output:
  To identify :
  When the client upload the image on the web app, he/she has to select which box best fits the face of the actor choosen. 
+ 
+ ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/output1.JPG)
+ 
+ 
  Then the app gives an output of the actor/actress' Name with the best accurancy. However, the app tells you two other prediction!
+ 
+ ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/output2.JPG)
  
  ## Authors :
  #### DSTI Spring Cohort 2020 – Python Labs 

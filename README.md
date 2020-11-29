@@ -9,15 +9,19 @@ So, here comes the idea of the project!
  
 ## General approach of services :
 The micro services are divided in 4 part : 
-1- A/ The public one : 
+- A/ The public one : 
 Find the actor is the one that the client Access , it provides all the functions that the client need to access.  
-2- B/ The 3 others private: 
+- B/ The 3 others private: 
 - IMDB service : We use the IMDB API to make 2  calls : 
-         1- First call : we pass a string of the movie/show name and it returns the movie/show ID. 
-         2- Second call: we pass the movie/show ID and it returns the list of all cast members names. 
+   - First call : we pass a string of the movie/show name and it returns the movie/show ID. 
+   
+   - Second call: we pass the movie/show ID and it returns the list of all cast members names. 
+         
 - Image services : we use the bing API to make an images research. 
-      We get All images URLs for every cast  member . 
-      It contains also the face detection,the face recognition and cropped images. 
+
+     We get All images URLs for every cast  member . 
+      
+    It contains also the face detection,the face recognition and cropped images. 
 - Storage  service :  We download the images using the URLs and store them on S3
     
     
@@ -28,9 +32,9 @@ A simple diagrams shows how all services mentioned above connecting between each
 
 All Microservices are divided in three layers:  
 
-  1- Main : it's the adapter. 
-  2- Service : the business logic , contains all the actions. 
-  3- Repository:  make the connection between the others services. 
+  - Main : it's the adapter. 
+  - Service : the business logic , contains all the actions. 
+  - Repository:  make the connection between the others services. 
 
 <img src="https://github.com/azoet/FindTheActor/blob/master/images/services.JPG" align="center" height="500" width="800"/>
  
@@ -48,9 +52,9 @@ All Microservices are divided in three layers:
   
  ## Web Application:
  The Frontend uses a Flask web application. It is devided into 3 pages: 
- 1- First page : provides an "Upload" field where to drop the photo. 
- 2- Second page : Choose the box showing the actor face (use of MTCNN). 
- 3- Third page : the result page ( use of YOLO model)  
+ - First page : provides an "Upload" field where to drop the photo. 
+ - Second page : Choose the box showing the actor face (use of MTCNN). 
+ - Third page : the result page ( use of YOLO model)  
  
 <img src="https://github.com/azoet/FindTheActor/blob/master/images/output1.JPG" align="center" height="500" width="800"/>
  

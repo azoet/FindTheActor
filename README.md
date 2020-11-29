@@ -1,16 +1,54 @@
-# Find the Actor
+# Python Labs Project
+   ### Find The Actor
+#### Introduction
+Watching a serie or movie on TV, seeing this actor, and forgetting his names. Searching for hours in the deep inside of my thoughts, not finding!
 
-Watching a serie or movie on TV, seeing this actor, and forgetting his name, searching for hours in the deep inside of my thoughts, not finding. I hate it.
+Let‚Äôs say I was watching ‚ÄúJos√©phine, Ange Gardien‚Äù, tonight at 9:35 PM, and who‚Äôs this person? (update : he‚Äôs Omar Mebrouk)
 
-Letís say I was watching ìJosÈphine, ange gardienî, tonight, at 9:35 PM, and bim, whoís the guy? (update : heís Omar Mebrouk)
+So, here comes the idea of the project!
 
-So, here comes idea of the project :
-
-	
- 1. Open the web app, take a picture of the screen with ìthe guyî, possibly resize it and send !
- 2. Web app is getting the picture with geoloc and timestamp on it to the API server (thanks AWS, thanks Leo)
+#### Main Idea :	
+ 1. Open the web app, take a picture of the screen with ‚Äúthe actor‚Äù, possibly resize it and send !
+ 2. Web App is getting the picture with geoloc and timestamp on it to the API server!
  3. The API is taking geoloc, and find the corresponding linear-television scheduled programs
- 4. Itís taking the timestamp, find all the matching possible programs name broadcast at the same time slot at this precise location (ex. https://www.programme-television.org/series-tv  )
+ 4. It‚Äôs taking the timestamp, find all the matching possible programs name broadcast at the same time slot at this precise location (ex. https://www.programme-television.org/series-tv  )
  5. It gets the full cast & crew people names from all these possible programs(ex. https://www.imdb.com/title/tt0172014/fullcredits?ref_=ttrel_ql_1  )	
  6. For each names, get the first 10 pictures from google image search and compare to the one provided
- 7. And send back the one name with the best % of accuracy, and its corresponding last event (ex. http://www.allocine.fr/personne/fichepersonne_gen_cpersonne=575311.html  ìOF COURSE, I saw him in H24 with Anne Parillaud!î)
+ 7. And send back the one name with the best % of accuracy, and its corresponding last event (ex. http://www.allocine.fr/personne/fichepersonne_gen_cpersonne=575311.html 
+ ‚ÄúOF COURSE, I saw him in H24 with Anne Parillaud!‚Äù)
+ 
+#### General approach of services :
+To build the main idea, and when the client has this doubt about the actor , its device sent a request to our service.
+We choosed to use two different parts including:
+ 1- Public Network:
+ This network provides the "FindTheActor" service. It includes how to "Upload" the image, how to "Detect" the information to recognize and shows the "Result" . Then the "Storage" !
+ 
+ 2- private Network:
+ This one is the main work. It is devided into two service:
+    *Image service* : we used *MTCNN* for the face detection, and *Keras* for the face recognition.
+    *Storage service* : Here, Thanks to the simple cloud storage Amazon S3.
+    
+    
+A simple diagrams shows how all services mentioned above connect between each other :
+ ################### ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/xxxx.JPG)
+ 
+ ##### Face recognition:
+ 
+ ##### Feeding the train :
+ ##### Model used in python:
+ 
+ ##### Output:
+ To identify :
+ When the client upload the image on the web app, he/she has to select which box best fits the face of the actor choosen. 
+ Then the app gives an output of the actor/actress' Name with the best accurancy. However, the app tells you two other prediction!
+ 
+ ## Authors :
+ ##### DSTI Spring Cohort 2020 ‚Äì Python Labs 
+ ###### Professor : Assan Sanogo
+###### Team members :
+###### Barbara Martino : *Data scientist Student*
+###### Bala Veeraiah Yarabikki *Data scientist Student*
+###### Amir Zoet *Data scientist Student*
+###### Nawress Mahmoudi *Data Engineer Student*
+###### Helene Huss-Magnin *Data scientist Student*
+ 

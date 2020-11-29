@@ -21,10 +21,10 @@ So, here comes the idea of the project!
 To build the main idea, and when the client has this doubt about the actor , its device sent a request to our service.
 
 We choosed to use two different parts including: 
- 1- Public Network:
+ 1 - Public Network:
  This network provides the "FindTheActor" service. It includes how to "Upload" the image, how to "Detect" the information to recognize and shows the "Result" . Then the "Storage" !
  
- 2- private Network:
+ 2 - private Network:
  This one is the main work. It is devided into two service: 
  
     1- *Image service* : we used *MTCNN* for the face detection, and *Keras* for the face recognition.

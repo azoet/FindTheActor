@@ -33,7 +33,7 @@ We choosed to use two different parts including:
     
 A simple diagrams shows how all services mentioned above connecting between each other :
  ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/service.JPG)
- <img src="https://github.com/azoet/FindTheActor/blob/master/images/service.JPG" awidth="100"/>
+ <img src="https://github.com/azoet/FindTheActor/blob/master/images/service.JPG" align="left" height="48" width="48"/>
 
  
 ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/services.JPG)

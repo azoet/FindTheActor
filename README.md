@@ -32,35 +32,35 @@ We choosed to use two different parts including:
     
     
 A simple diagrams shows how all services mentioned above connecting between each other :
- ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/service.JPG)
+ 
  <img src="https://github.com/azoet/FindTheActor/blob/master/images/service.JPG" align="center" height="500" width="800"/>
 
- 
-![alt text](https://github.com/azoet/FindTheActor/blob/master/images/services.JPG)
+
+
+
+<img src="https://github.com/azoet/FindTheActor/blob/master/images/services.JPG" align="center" height="500" width="800"/>
  
  ## Face recognition:
- ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/recognition.JPG)
+ <img src="https://github.com/azoet/FindTheActor/blob/master/images/recognition.JPG" align="center" height="500" width="800"/>
  
  ## Feeding the train :
- 
- ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/feeding_the_train.JPG)
+ <img src="https://github.com/azoet/FindTheActor/blob/master/images/feeding_the_train.JPG" align="center" height="500" width="800"/>
  ## Model used in python:
- ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/model.JPG)
  
+<img src="https://github.com/azoet/FindTheActor/blob/master/images/model.JPG" align="center" height="500" width="800"/>
  
- ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/model.JPG)
-  
+<img src="https://github.com/azoet/FindTheActor/blob/master/images/model2.JPG" align="center" height="500" width="800"/>
   
  ## Output:
  To identify :
  When the client upload the image on the web app, he/she has to select which box best fits the face of the actor choosen. 
  
- ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/output1.JPG)
+<img src="https://github.com/azoet/FindTheActor/blob/master/images/output.JPG" align="center" height="500" width="800"/>
  
  
  Then the app gives an output of the actor/actress' Name with the best accurancy. However, the app tells you two other prediction!
  
- ![alt text](https://github.com/azoet/FindTheActor/blob/master/images/output2.JPG)
+<img src="https://github.com/azoet/FindTheActor/blob/master/images/output2.JPG" align="center" height="500" width="800"/>
  
  ## Authors :
  #### DSTI Spring Cohort 2020 – Python Labs 
